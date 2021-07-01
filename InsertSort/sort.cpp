@@ -8,8 +8,12 @@ int main() {
 	vector<int> in;
 
 	string i;
-	while(cin >> i) {
-		in.push_back(stoi(i));
+	try {
+		while(cin >> i) {
+			in.push_back(stoi(i));
+		}
+	} catch (const std::exception& ex) {
+		return 1;
 	}
 
 	/* before c++11, use iterator
