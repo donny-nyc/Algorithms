@@ -22,7 +22,7 @@ class Vector {
 
 void merge(Vector& v, int p, int q, int r) {
 	int n1 = q - p + 1;
-	int n2 = r - q;
+	int n2 = r - q - 1;
 
 	Vector left(n1 + 1); // for sentinel
 	Vector right(n2 + 1);
@@ -31,7 +31,7 @@ void merge(Vector& v, int p, int q, int r) {
 		left[i] = v[i + p];
 	}
 	for(int j = 0; j != n2; j++) {
-		right[j] = v[q + j]; 
+		right[j] = v[q + j + 1]; 
 	}
 
 	left[n1] = 9999;
@@ -59,6 +59,13 @@ void mergeSort(Vector& v, int s, int r) {
 	mergeSort(v, s, q);
 	mergeSort(v, q + 1, r);
 	merge(v, s, q, r);
+	for(int i = 0; i < v.size(); i++) {
+		cout << v[i];
+		if (i < v.size() - 1) {
+			cout << ", ";
+		}
+	}
+	cout << endl;
 }
 
 int main() {
