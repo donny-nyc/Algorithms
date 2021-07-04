@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <climits>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ class Vector {
 
 void merge(Vector& v, int p, int q, int r) {
 	int n1 = q - p + 1;
-	int n2 = r - q - 1;
+	int n2 = r - q;
 
 	Vector left(n1 + 1); // for sentinel
 	Vector right(n2 + 1);
@@ -34,13 +36,13 @@ void merge(Vector& v, int p, int q, int r) {
 		right[j] = v[q + j + 1]; 
 	}
 
-	left[n1] = 9999;
-	right[n2] = 9999;
+	left[n1] = INT_MAX;
+	right[n2] = INT_MAX;
 
 	int i = 0;
 	int j = 0;
 
-	for(int k = p; k < r; k++) {
+	for(int k = p; k <= r; k++) {
 		if (left[i] <= right[j]) {
 			v[k] = left[i];
 			i++;
@@ -59,22 +61,24 @@ void mergeSort(Vector& v, int s, int r) {
 	mergeSort(v, s, q);
 	mergeSort(v, q + 1, r);
 	merge(v, s, q, r);
-	for(int i = 0; i < v.size(); i++) {
-		cout << v[i];
-		if (i < v.size() - 1) {
-			cout << ", ";
-		}
-	}
-	cout << endl;
 }
 
-int main() {
-	Vector v(5);
+int main(int argc, char** argv) {
+	int len;
+
+	if (argc == 2) {
+		len = std::stoi(argv[1]);
+	} else {
+		len = 5;
+	}
+	Vector v(len);
 
 	for(int i = 0; i != v.size(); i++)
 		cin >> v[i];
 	
-	mergeSort(v, 0, v.size());
+	// indeces are base-0, so l-index would be zero
+	// and r-index would be the length (size) minus one
+	mergeSort(v, 0, v.size() - 1);
 
 	for(int i = 0; i != v.size(); i++) {
 		cout << v[i];
