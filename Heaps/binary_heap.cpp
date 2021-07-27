@@ -1,5 +1,6 @@
 #include <iostream>
 #include "testing.hpp"
+#include "heap.hpp"
 
 using namespace std;
 
@@ -148,5 +149,5 @@ int main() {
 //
 //	current->setValue(5);
 
-	cout << parent(4) << endl;
+
 }
