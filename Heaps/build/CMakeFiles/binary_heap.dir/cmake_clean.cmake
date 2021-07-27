@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/binary_heap.dir/binary_heap.cpp.o"
+  "CMakeFiles/binary_heap.dir/heap.cpp.o"
+  "CMakeFiles/binary_heap.dir/testing.cpp.o"
   "binary_heap"
   "binary_heap.pdb"
 )

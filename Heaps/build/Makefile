@@ -169,6 +169,60 @@ binary_heap.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/binary_heap.cpp.s
 .PHONY : binary_heap.cpp.s
 
+heap.o: heap.cpp.o
+
+.PHONY : heap.o
+
+# target to build an object file
+heap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/heap.cpp.o
+.PHONY : heap.cpp.o
+
+heap.i: heap.cpp.i
+
+.PHONY : heap.i
+
+# target to preprocess a source file
+heap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/heap.cpp.i
+.PHONY : heap.cpp.i
+
+heap.s: heap.cpp.s
+
+.PHONY : heap.s
+
+# target to generate assembly for a file
+heap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/heap.cpp.s
+.PHONY : heap.cpp.s
+
+testing.o: testing.cpp.o
+
+.PHONY : testing.o
+
+# target to build an object file
+testing.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/testing.cpp.o
+.PHONY : testing.cpp.o
+
+testing.i: testing.cpp.i
+
+.PHONY : testing.i
+
+# target to preprocess a source file
+testing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/testing.cpp.i
+.PHONY : testing.cpp.i
+
+testing.s: testing.cpp.s
+
+.PHONY : testing.s
+
+# target to generate assembly for a file
+testing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/testing.cpp.s
+.PHONY : testing.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -181,6 +235,12 @@ help:
 	@echo "... binary_heap.o"
 	@echo "... binary_heap.i"
 	@echo "... binary_heap.s"
+	@echo "... heap.o"
+	@echo "... heap.i"
+	@echo "... heap.s"
+	@echo "... testing.o"
+	@echo "... testing.i"
+	@echo "... testing.s"
 .PHONY : help
 
 

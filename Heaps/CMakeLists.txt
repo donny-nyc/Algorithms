@@ -6,4 +6,4 @@ project(binary_heap)
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-add_executable(binary_heap binary_heap.cpp)
+add_executable(binary_heap binary_heap.cpp testing.cpp heap.cpp)
