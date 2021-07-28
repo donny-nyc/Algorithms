@@ -127,6 +127,30 @@ void max_heapify(Heap *heap, int idx) {
 	}
 }
 
+void min_heapify(Heap *heap, int idx) {
+	int left = heap->left(idx);
+	int right = heap->right(idx);
+
+	int smallest;
+	if ( left < heap->getMax() && heap->get(left) < heap->get(idx)) {
+		smallest = left;
+	} else {
+		smallest = idx;
+	}
+
+	if (right < heap->getMax() && heap->get(right) < heap->get(smallest)) {
+		smallest = right;
+	}
+
+	if (smallest != idx) {
+		int tmp = heap->get(idx);
+		heap->set(idx, heap->get(smallest));
+		heap->set(smallest, tmp);
+
+		min_heapify(heap, smallest);
+	}
+}
+
 void build_max_heap(Heap* heap) {
 	for(int i = heap->getMax() / 2; i >= 0; i--) {
 		max_heapify(heap, i);	

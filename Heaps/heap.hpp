@@ -13,4 +13,5 @@ class Heap {
 };
 
 void max_heapify(Heap*, int);
+void min_heapify(Heap*, int);
 void build_max_heap(Heap*);

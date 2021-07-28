@@ -302,6 +302,25 @@ int test() {
 		return PASS;
 	});
 
+	run("SmallMinHeapify", [](){
+		Heap* heap = new Heap(3);
+		heap->set(0, 2);
+		heap->set(1, 1);
+		heap->set(2, 0);
+
+		min_heapify(heap, 0);
+
+		if(!expect(heap->get(0), 0, equals)) {
+			return FAIL;
+		}
+
+		if (!expect(heap->get(2), 2, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+
 	cout << "__done testing __" << endl;
 
 	return 0;
