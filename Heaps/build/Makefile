@@ -142,6 +142,32 @@ binary_heap/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/build
 .PHONY : binary_heap/fast
 
+#=============================================================================
+# Target rules for targets named clang-tidy
+
+# Build rule for target.
+clang-tidy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clang-tidy
+.PHONY : clang-tidy
+
+# fast build rule for target.
+clang-tidy/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-tidy.dir/build.make CMakeFiles/clang-tidy.dir/build
+.PHONY : clang-tidy/fast
+
+#=============================================================================
+# Target rules for targets named clang-format
+
+# Build rule for target.
+clang-format: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clang-format
+.PHONY : clang-format
+
+# fast build rule for target.
+clang-format/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-format.dir/build.make CMakeFiles/clang-format.dir/build
+.PHONY : clang-format/fast
+
 binary_heap.o: binary_heap.cpp.o
 
 .PHONY : binary_heap.o
@@ -231,6 +257,8 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... clang-format"
+	@echo "... clang-tidy"
 	@echo "... binary_heap"
 	@echo "... binary_heap.o"
 	@echo "... binary_heap.i"

@@ -6,17 +6,31 @@
 
 #IncludeRegexTransform: 
 
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/binary_heap.cpp
+heap.hpp
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/heap.hpp
+testing.hpp
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/testing.hpp
+iostream
+-
+
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/heap.cpp
+heap.hpp
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/heap.hpp
+iostream
+-
+
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/heap.hpp
 
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/testing.cpp
-iostream
--
-functional
--
 testing.hpp
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/testing.hpp
 heap.hpp
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/heap.hpp
+functional
+-
+iostream
+-
 
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/testing.hpp
 

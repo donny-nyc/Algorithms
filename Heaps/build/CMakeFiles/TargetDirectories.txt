@@ -1,3 +1,5 @@
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles/rebuild_cache.dir
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles/edit_cache.dir
 /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles/binary_heap.dir
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles/clang-tidy.dir
+/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles/clang-format.dir

@@ -83,6 +83,8 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/binary_heap.dir/clean
+clean: CMakeFiles/clang-tidy.dir/clean
+clean: CMakeFiles/clang-format.dir/clean
 
 .PHONY : clean
 
@@ -112,6 +114,60 @@ binary_heap: CMakeFiles/binary_heap.dir/rule
 CMakeFiles/binary_heap.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/binary_heap.dir/build.make CMakeFiles/binary_heap.dir/clean
 .PHONY : CMakeFiles/binary_heap.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/clang-tidy.dir
+
+# All Build rule for target.
+CMakeFiles/clang-tidy.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-tidy.dir/build.make CMakeFiles/clang-tidy.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-tidy.dir/build.make CMakeFiles/clang-tidy.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles --progress-num= "Built target clang-tidy"
+.PHONY : CMakeFiles/clang-tidy.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/clang-tidy.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/clang-tidy.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles 0
+.PHONY : CMakeFiles/clang-tidy.dir/rule
+
+# Convenience name for target.
+clang-tidy: CMakeFiles/clang-tidy.dir/rule
+
+.PHONY : clang-tidy
+
+# clean rule for target.
+CMakeFiles/clang-tidy.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-tidy.dir/build.make CMakeFiles/clang-tidy.dir/clean
+.PHONY : CMakeFiles/clang-tidy.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/clang-format.dir
+
+# All Build rule for target.
+CMakeFiles/clang-format.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-format.dir/build.make CMakeFiles/clang-format.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-format.dir/build.make CMakeFiles/clang-format.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles --progress-num= "Built target clang-format"
+.PHONY : CMakeFiles/clang-format.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/clang-format.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/clang-format.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/donny/Documents/Textbooks/IntroAlgorithms/Heaps/build/CMakeFiles 0
+.PHONY : CMakeFiles/clang-format.dir/rule
+
+# Convenience name for target.
+clang-format: CMakeFiles/clang-format.dir/rule
+
+.PHONY : clang-format
+
+# clean rule for target.
+CMakeFiles/clang-format.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/clang-format.dir/build.make CMakeFiles/clang-format.dir/clean
+.PHONY : CMakeFiles/clang-format.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

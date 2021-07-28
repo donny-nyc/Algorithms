@@ -11,6 +11,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.18.5/CMakeCCompiler.cmake"
   "CMakeFiles/3.18.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.18.5/CMakeSystem.cmake"
+  "../cmake/clang-cxx-dev-tools.cmake"
   "/usr/share/cmake/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -46,4 +47,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/binary_heap.dir/DependInfo.cmake"
+  "CMakeFiles/clang-tidy.dir/DependInfo.cmake"
+  "CMakeFiles/clang-format.dir/DependInfo.cmake"
   )
