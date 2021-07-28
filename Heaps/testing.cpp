@@ -21,6 +21,42 @@ void fail(string msg) {
 	cout << endl;
 }
 
+bool gt(int a, int b) {
+	if (a <= b) {
+		message = to_string(a) + " is not greater than " + to_string(b);
+		return false;
+	}
+
+	return true;
+}
+
+bool gte(int a, int b) {
+	if (a < b) {
+		message = to_string(a) + " is not greater than or equal to " + to_string(b);
+		return false;
+	}
+
+	return true;
+}
+
+bool lt(int a, int b) {
+	if (a >= b) {
+		message = to_string(a) + " is not less than " + to_string(b);
+		return false;
+	}
+
+	return true;
+}
+
+bool lte(int a, int b) {
+	if (a > b) {
+		message = to_string(a) + " is not less than or equal to " + to_string(b);
+		return false;
+	}
+
+	return true;
+}
+
 bool equals(int a, int b) {
 	if (a != b) {
 		message = to_string(a) + " does not equal " + to_string(b);
@@ -155,15 +191,15 @@ int test() {
 	});
 
 	run("MinimalMaxHeapify", [](){
-		Heap h = Heap(3);	
+		Heap* h = new Heap(3);	
 
 		for(int i = 0; i < 3; i++) {
-			h.set(i, i);
+			h->set(i, i);
 		}
 
 		max_heapify(h, 0);
 
-		if(!expect(h.get(0), 2, equals)) {
+		if(!expect(h->get(0), 2, equals)) {
 			return FAIL;
 		}
 
@@ -171,29 +207,100 @@ int test() {
 	});
 
 	run("ComplicatedMaxHeapify", [](){
-		Heap h = Heap(7);
+		Heap* h = new Heap(7);
 
-		for(int i = 0; i < h.getMax(); i++) {
-			h.set(i, h.getMax() - i - 1);
+		for(int i = 0; i < h->getMax(); i++) {
+			h->set(i, h->getMax() - i - 1);
 		}
 
-		h.set(0, 0);
+		h->set(0, 0);
 
 		max_heapify(h, 0);
 
-		if(!expect(h.get(0), 5, equals)) {
+		if(!expect(h->get(0), 5, equals)) {
 			return FAIL;
 		}
 
 		// min value would have followed the
 		// path of 'largest' down to idx: 3
-		if(!expect(h.get(3), 0, equals)) {
+		if(!expect(h->get(3), 0, equals)) {
 			return FAIL;
 		}
 
 		return PASS;
 	});
 
+	run("BuildMaxHeap", [](){
+		Heap* heap = new Heap(5);
+		for(int i = 0; i < 5; i++) {
+			heap->set(i, i);
+		}
+
+		build_max_heap(heap);
+
+		for(int i = 0; i < 5; i++) {
+			cout << heap->get(i) << ", ";
+		}
+
+		if(!expect(heap->get(0), 4, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+
+	run("BuildSmallMaxHeap", [](){
+		Heap* heap = new Heap(1);
+
+		heap->set(0, 9);
+
+		build_max_heap(heap);
+
+		if(!expect(heap->get(0), 9, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+
+	run("BuildEmptyMaxHeap", [](){
+		Heap* heap = new Heap(0);
+
+		build_max_heap(heap);
+
+		if(!expect(heap->getMax(), 0, equals)) {
+			return FAIL;
+		}
+
+		if(!expect(heap->get(0), -1, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+
+	run("BuildHugeMaxHeap", [](){
+		int heap_size = 900000;
+		Heap* heap = new Heap(heap_size);
+
+		for(int i = 0; i < heap_size; i++) {
+			heap->set(i, heap_size - i);
+		}
+
+		build_max_heap(heap);
+
+		for(int i = 1; i < heap_size; i++) {
+			if(!expect(heap->get(i-1), heap->get(i), gt)) {
+				return FAIL;
+			}
+		}
+
+		if (!expect(heap->get(0), heap_size, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
 
 	cout << "__done testing __" << endl;
 

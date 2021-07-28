@@ -103,28 +103,32 @@ int Heap::set(int i, int value) {
 	return 0;
 }
 
-void max_heapify(Heap heap, int idx) {
-	int left = heap.left(idx);
-	int right = heap.right(idx);
+void max_heapify(Heap *heap, int idx) {
+	int left = heap->left(idx);
+	int right = heap->right(idx);
 
 	int largest;
-	if (left < heap.getMax() && heap.get(left) > heap.get(idx)) {
+	if (left < heap->getMax() && heap->get(left) > heap->get(idx)) {
 		largest = left;
 	} else {
 		largest = idx;
 	}
 
-	if (right < heap.getMax() && heap.get(right) > heap.get(largest)) {
+	if (right < heap->getMax() && heap->get(right) > heap->get(largest)) {
 		largest = right;
 	}
 
 	if (largest != idx) {
-		int tmp = heap.get(idx);
-		heap.set(idx, heap.get(largest));
-		heap.set(largest, tmp);
+		int tmp = heap->get(idx);
+		heap->set(idx, heap->get(largest));
+		heap->set(largest, tmp);
 
 		max_heapify(heap, largest);
 	}
 }
 
-
+void build_max_heap(Heap* heap) {
+	for(int i = heap->getMax() / 2; i >= 0; i--) {
+		max_heapify(heap, i);	
+	}
+}

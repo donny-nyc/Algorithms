@@ -12,4 +12,5 @@ class Heap {
 		int set(int i, int value);
 };
 
-void max_heapify(Heap, int);
+void max_heapify(Heap*, int);
+void build_max_heap(Heap*);
