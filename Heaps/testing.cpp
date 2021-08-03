@@ -321,6 +321,104 @@ int test() {
     return PASS;
   });
 
+	run("BuildSmallMinHeap", []() {
+		Heap *heap = new Heap(3);
+		heap->set(0, 2);
+		heap->set(1, 1);
+		heap->set(2, 0);
+
+		build_min_heap(heap);
+
+		if (!expect(heap->get(0), 0, equals)) {
+			return FAIL;
+		}
+
+		if (!expect(heap->get(2), 2, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+
+	run("BuildBiggerMinHeap", []() {
+		// blows up above 10,000
+		for (int x = 4; x < 10000; x++) {
+			int heapSize = x;
+			Heap *heap = new Heap(heapSize);
+
+			for(int i = 0; i < heapSize; i++) {
+				heap->set(i, heapSize - i);
+			}
+
+			build_min_heap(heap);
+
+			if (!expect(heap->get(0), 1, equals)) {
+				for (int j = 0; j < heapSize; j++) {
+					cout << heap->get(j) << ", ";
+				}
+
+				return FAIL;
+			}
+		}
+		return PASS;
+	});
+
+	run("ReportsCorrectSize", []() {
+		Heap *heap = new Heap(4);
+
+		if (!expect(heap->getSize(), 0, equals)) {
+			return FAIL;
+		}
+
+		heap->set(0, 0);
+
+		if (!expect(heap->getSize(), 1, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+
+	run("Heapsort", []() {
+		int heap_size = 4;
+		Heap *heap = new Heap(heap_size);
+
+		for(int i = 0; i < heap_size; i++) {
+			heap->set(i, i);	
+		}
+
+		int* res = heapsort(heap);
+
+		for (int j = 0; j < heap_size; j++) {
+			cout << res[j] << ", ";
+		}
+
+		return PASS;
+	});
+
+	/*
+	run("BuildMassiveMinHeap", []() {
+		int heap_size = 1000000;
+		Heap* heap = new Heap(heap_size);
+
+		for(int i = 0; i < heap_size; i++) {
+			heap->set(i, heap_size - i);
+		}
+
+		build_min_heap(heap);
+
+		for(int j = 1; j < 10; j++) {
+			cout << heap->get(j) << ", ";
+		}
+
+		if(!expect(heap->get(0), 0, equals)) {
+			return FAIL;
+		}
+
+		return PASS;
+	});
+	*/
+
   cout << "__done testing __" << endl;
 
   return 0;

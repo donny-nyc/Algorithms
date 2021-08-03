@@ -6,6 +6,7 @@ using namespace std;
 Heap::Heap(int i) {
   elements = new int[i];
   max = i;
+	size = 0;
 }
 
 /*
@@ -98,6 +99,8 @@ int Heap::set(int i, int value) {
 
   elements[i] = value;
 
+	size++;
+
   return 0;
 }
 
@@ -106,13 +109,13 @@ void max_heapify(Heap *heap, int idx) {
   int right = heap->right(idx);
 
   int largest;
-  if (left < heap->getMax() && heap->get(left) > heap->get(idx)) {
+  if (left < heap->getSize() && heap->get(left) > heap->get(idx)) {
     largest = left;
   } else {
     largest = idx;
   }
 
-  if (right < heap->getMax() && heap->get(right) > heap->get(largest)) {
+  if (right < heap->getSize() && heap->get(right) > heap->get(largest)) {
     largest = right;
   }
 
@@ -130,13 +133,13 @@ void min_heapify(Heap *heap, int idx) {
   int right = heap->right(idx);
 
   int smallest;
-  if (left < heap->getMax() && heap->get(left) < heap->get(idx)) {
+  if (left < heap->getSize() && heap->get(left) < heap->get(idx)) {
     smallest = left;
   } else {
     smallest = idx;
   }
 
-  if (right < heap->getMax() && heap->get(right) < heap->get(smallest)) {
+  if (right < heap->getSize() && heap->get(right) < heap->get(smallest)) {
     smallest = right;
   }
 
@@ -153,4 +156,35 @@ void build_max_heap(Heap *heap) {
   for (int i = heap->getMax() / 2; i >= 0; i--) {
     max_heapify(heap, i);
   }
+}
+
+void build_min_heap(Heap *heap) {
+	for (int i = heap->getMax() / 2; i >= 0; i--) {
+		min_heapify(heap, i);
+	}
+}
+
+int Heap::getSize() {
+	return size;
+}
+
+void Heap::decrementSize() {
+	size--;
+}
+
+int* heapsort(Heap *heap) {
+	int* results = new int(heap->getSize());
+
+	build_max_heap(heap);
+
+	for(int i = heap->getSize(); i > 0; i--) {
+		results[i] = heap->get(0);
+		int tmp = heap->get(i);
+		heap->set(i, heap->get(0));
+		heap->set(0, tmp);
+		heap->decrementSize();
+		max_heapify(heap, 1);
+	}
+
+	return results;
 }
