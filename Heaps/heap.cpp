@@ -88,6 +88,20 @@ int Heap::get(int i) {
  */
 int Heap::getMax() { return max; }
 
+int Heap::replace(int i, int value) {
+	if (i >= max) {
+		return -1;
+	}
+
+	if (i < 0) {
+		return -1;
+	}
+
+	elements[i] = value;
+
+	return 0;
+}
+
 int Heap::set(int i, int value) {
   if (i >= max) {
     return -1;
@@ -121,8 +135,8 @@ void max_heapify(Heap *heap, int idx) {
 
   if (largest != idx) {
     int tmp = heap->get(idx);
-    heap->set(idx, heap->get(largest));
-    heap->set(largest, tmp);
+    heap->replace(idx, heap->get(largest));
+    heap->replace(largest, tmp);
 
     max_heapify(heap, largest);
   }
@@ -145,8 +159,8 @@ void min_heapify(Heap *heap, int idx) {
 
   if (smallest != idx) {
     int tmp = heap->get(idx);
-    heap->set(idx, heap->get(smallest));
-    heap->set(smallest, tmp);
+    heap->replace(idx, heap->get(smallest));
+    heap->replace(smallest, tmp);
 
     min_heapify(heap, smallest);
   }
@@ -172,18 +186,26 @@ void Heap::decrementSize() {
 	size--;
 }
 
+void Heap::string() {
+	for(int i = 0; i < getMax(); i++) {
+		cout << get(i) << ", ";
+	}
+	cout << endl;
+}
+
 int* heapsort(Heap *heap) {
-	int* results = new int(heap->getSize());
+	int* results = new int[heap->getSize()];
 
 	build_max_heap(heap);
 
-	for(int i = heap->getSize(); i > 0; i--) {
-		results[i] = heap->get(0);
+	int i = heap->getSize() - 1;
+	for(; i >= 0; i--) {
 		int tmp = heap->get(i);
-		heap->set(i, heap->get(0));
-		heap->set(0, tmp);
+		results[i] = heap->get(0);
+		heap->replace(i, heap->get(0));
+		heap->replace(0, tmp);
 		heap->decrementSize();
-		max_heapify(heap, 1);
+		max_heapify(heap, 0);
 	}
 
 	return results;

@@ -379,6 +379,12 @@ int test() {
 		return PASS;
 	});
 
+	/* Invariant - at every iteration, the "root" is
+	 * greater than each of its child nodes (each 
+	 * left and right subtree is a max-heap, holding
+	 * the same invariant
+	 */
+
 	run("Heapsort", []() {
 		int heap_size = 4;
 		Heap *heap = new Heap(heap_size);
@@ -389,8 +395,10 @@ int test() {
 
 		int* res = heapsort(heap);
 
-		for (int j = 0; j < heap_size; j++) {
-			cout << res[j] << ", ";
+		for (int j = 1; j < heap_size; j++) {
+			if (!expect(heap->get(j), heap->get(j-1), gt)) {
+				return FAIL;
+			}
 		}
 
 		return PASS;

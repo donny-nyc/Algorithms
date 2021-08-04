@@ -13,6 +13,8 @@ class Heap {
 		int right(int i);
 		int get(int i);
 		int set(int i, int value);
+		int replace(int i, int value); // like set, but does not increment size
+		void string();
 };
 
 void max_heapify(Heap*, int);
