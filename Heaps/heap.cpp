@@ -193,6 +193,8 @@ void Heap::string() {
 	cout << endl;
 }
 
+// O (n lg n)
+// n-iterations of O(n) max_heapify operation
 int* heapsort(Heap *heap) {
 	int* results = new int[heap->getSize()];
 
@@ -205,6 +207,8 @@ int* heapsort(Heap *heap) {
 		heap->replace(i, heap->get(0));
 		heap->replace(0, tmp);
 		heap->decrementSize();
+
+		// O(lg n)
 		max_heapify(heap, 0);
 	}
 
