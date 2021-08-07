@@ -13,7 +13,7 @@ if [[ -d "$DIRNAME" ]] || [[ -d "$DIRNAME/" ]]; then
 	echo "error - $DIRNAME already exists"
 fi
 
-mkdir -p "$DIRNAME/cmake" "$DIRNAME/build"
+mkdir -p "$DIRNAME/cmake" "$DIRNAME/build" "$DIRNAME/src"
 
 cat >$DIRNAME/cmake/clang-cxx-dev-tools.cmake <<EOL
 # More matches for autoformatting
@@ -105,6 +105,7 @@ nmap <F2> :w<CR>
 imap <F2> <ESC>:w<CR>i
 
 " make
+" set makeprg=cmake
 map <F7> :make<CR>
 map <S-F7> :make clean all<CR>
 EOL
