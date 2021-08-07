@@ -2,9 +2,19 @@
 template <typename T>
 struct children_t;
 
+/*
+ * HeapElement represents an entry in a Heap object.
+ * Each element has a single templated value, and pointers
+ * to its children. Here, we establish that there are
+ * _at most_ two children (named left and right).
+ *
+ * No invariants are applied by default, but the same
+ * min/Max rules described below may be considered
+ */
 template <typename T>
 class HeapElement {
     private:
+        T value;
         HeapElement* parent;
         struct children_t<T> children;
     public:
@@ -15,6 +25,10 @@ class HeapElement {
         int insertRight(T);
 };
 
+/*
+ * struct children_t groups the left and right
+ * child nodes together in a single container
+ */
 template <typename T>
 struct children_t {
     HeapElement<T>* left;
