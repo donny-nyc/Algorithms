@@ -6,6 +6,6 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(PriorityQueue)
 
-include_directories()
+include_directories(${PROJECT_SOURCE_DIR})
 
-add_executable(PriorityQueue binary_heap.cpp testing.cpp heap.cpp)
+add_executable(PriorityQueue src/main.cpp src/Heap.cpp src/MaxHeap.cpp)

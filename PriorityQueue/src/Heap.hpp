@@ -1,4 +1,3 @@
-// typedef struct children_t children;
 template <typename T>
 struct children_t;
 
@@ -12,17 +11,17 @@ struct children_t;
  * min/Max rules described below may be considered
  */
 template <typename T>
-class HeapElement {
+class Node {
     private:
         T value;
-        HeapElement* parent;
-        struct children_t<T> children;
     public:
-        HeapElement(T);
-        ~HeapElement();
-        HeapElement* getParent();
-        int insertLeft(T);
-        int insertRight(T);
+        Node* parent;
+        struct children_t<T> children;
+        Node(T t): value(t){}
+        ~Node();
+        T getValue() { return value; }
+        void insertLeft(Node<T>*);
+        void insertRight(Node<T>*);
 };
 
 /*
@@ -31,8 +30,8 @@ class HeapElement {
  */
 template <typename T>
 struct children_t {
-    HeapElement<T>* left;
-    HeapElement<T>* right;
+    Node<T>* left;
+    Node<T>* right;
 };
 
 /*
@@ -52,22 +51,33 @@ struct children_t {
  */
 template<typename U>
 class Heap {
-    private:
-        HeapElement<U> *elements;
     public:
-        Heap(int);
-        ~Heap();
+        Node<U>* root;
+        Heap(){}
+        Heap(U u) { root = new Node<U>(u); }
+        // ~Heap();
         // returns the `top` node in the heap, if it exists
-        U root();
-        // exchanges the values of the two provided elements
-        int swap(HeapElement<U>*, HeapElement<U>*);
+        Node<U>* getRoot();
         // places the value at its correct location on the heap
         // (assuming sufficient space remains)
-        int insert(U);
         // returns a pointer to the element holding the given
         // value (if it exists)
         //
         // Assumes that _at most_ one element exists with the
         // given value
-        HeapElement<U>* find(U);
+};
+
+template<typename T>
+class MaxHeap : public Heap<T> {
+    public:
+        void insert(T);
+        Node<T>* find(T);
+};
+
+
+template<typename U>
+class MinHeap : public Heap<U> {
+    public:
+        void insert(U);
+        Node<U>* find(U);
 };
