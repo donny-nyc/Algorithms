@@ -47,12 +47,12 @@ void Heap<T>::insert(T t) {
 }
 */
 
-/*
 template <typename T>
-HeapElement<T>* Heap<T>::getRoot() {
+Node<T>* Heap<T>::getRoot() {
     return root;
 }
 
+/*
 template <typename T>
 void Heap<T>::setRoot(T new_root) {
     root = new_root;
@@ -67,3 +67,5 @@ int Heap<T>::swapValue(HeapElement<T>* element, HeapElement<T>* other) {
     return 0;
 }
 */
+
+

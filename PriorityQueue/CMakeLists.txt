@@ -8,4 +8,5 @@ project(PriorityQueue)
 
 include_directories(${PROJECT_SOURCE_DIR})
 
-add_executable(PriorityQueue src/main.cpp src/Heap.cpp src/MaxHeap.cpp)
+add_executable(PriorityQueue src/main.cpp src/Heap.cpp src/MaxHeap.cpp
+    src/Heap.hpp)
