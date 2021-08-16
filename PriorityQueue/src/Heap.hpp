@@ -134,6 +134,7 @@ template<typename T>
 void MaxHeap<T>::insert(T t) {
     if (!Heap<T>::root) { /* empty heap */
        Heap<T>::root = new Node<T>(t);
+       return;
     }
 
     // new max - need to replace the existing node
@@ -148,9 +149,15 @@ void MaxHeap<T>::insert(T t) {
     if(target) {
         Node<T>* tmp = target;
         target = new Node<T>(t);
+
+        if (Heap<T>::root == tmp) { 
+            Heap<T>::root = target;
+        } else {
+            target->parent = tmp->parent;
+            target->parent->children.left = target;
+        }
         tmp->parent = target;
         target->children.left = tmp;
-        Heap<T>::root = target;
     } else {
       target = new Node<T>(t);
       target->parent = prev;
