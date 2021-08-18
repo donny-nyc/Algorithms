@@ -67,5 +67,3 @@ int Heap<T>::swapValue(HeapElement<T>* element, HeapElement<T>* other) {
     return 0;
 }
 */
-
-

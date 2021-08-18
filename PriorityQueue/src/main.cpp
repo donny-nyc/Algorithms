@@ -9,6 +9,10 @@ int main() {
 
     int x;
     while(cin >> x) {
-        heap.insert(x);
+        if(x == 0) {
+            heap.pop();
+        } else {
+            heap.insert(x);
+        }
     }
 }

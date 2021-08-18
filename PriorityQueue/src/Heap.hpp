@@ -77,6 +77,7 @@ class Heap {
         //
         // Assumes that _at most_ one element exists with the
         // given value
+        // one of its children (if one exists)
 };
 
 template<typename T>
@@ -88,6 +89,7 @@ class MaxHeap : public Heap<T> {
         }
         string toString();
         Node<T>* find(T);
+        Node<T>* pop(); // returns the top value, replacing it with
 };
 
 
@@ -97,6 +99,7 @@ class MinHeap : public Heap<U> {
     public:
         void insert(U);
         Node<U>* find(U);
+        Node<U>* pop(); // returns the top value, replacing it with
 };
 
 
@@ -169,5 +172,31 @@ void MaxHeap<T>::insert(T t) {
     cout << result << endl;
 }
 
+/* pop() removes the root node from the heap, returning
+ * it to the calling function. `root` is reassigned to
+ * the larger child element (if any exist)
+ */
+template <typename T>
+Node<T>* MaxHeap<T>::pop() {
+    Node<T>* root = Heap<T>::root;
 
+    if (!root) {
+        return 0;
+    }
 
+    Node<T>* left = root->children.left;
+    Node<T>* right = root->children.right;
+    if (left && right && left->getValue() > right->getValue()) {
+        Heap<T>::root = left;
+    } else if (!left && right) {
+        Heap<T>::root = right;
+    } else if (left && !right) {
+        Heap<T>::root = left;
+    } else {
+        Heap<T>::root = 0;
+    }
+
+    cout << toString() << endl;
+
+    return root;
+}
