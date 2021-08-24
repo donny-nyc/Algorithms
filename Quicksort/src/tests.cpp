@@ -37,17 +37,55 @@ int test_handle_unsorted_array_10() {
     quicksort(A, A + 9);
 
     for(int i = 1; i < 10; i++) {
-        cout << A[i - 1] << ", ";
-        /*
         if (A[i] < A[i-1]) {
             cout << "invariant failed: " << A[i - 1];
             cout << " is not less than " << A[i] << endl;
             return 1;
         }
-        */
     }
 
     cout << endl;
+
+    cout << "PASS" << endl;
+
+    return 0;
+}
+
+int test_handle_sorted_array_10() {
+    cout << "test_handle_sorted_array_10" << endl;
+
+    int A[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    quicksort(A, A + 9);
+
+    for(int i = 1; i < 10; i++) {
+        if (A[i] < A[i-1]) {
+            cout << "invariant failed: " << A[i - 1];
+            cout << " is not less than " << A[i] << endl;
+            return 1;
+        }
+
+    }
+
+    cout << "PASS" << endl;
+
+    return 0;
+}
+
+int test_handle_duplicate_values() {
+    cout << "test_handle_duplicate_values" << endl;
+
+    int A[] = {0, 0, 0, 0, 0, 1, 2, 3, 4, 5};
+    quicksort(A, A + 9);
+
+    for(int i = 1; i < 10; i++) {
+        if (A[i] < A[i-1]) {
+            cout << "invariant failed: " << A[i - 1];
+            cout << " is not less than " << A[i] << endl;
+            return 1;
+        }
+
+    }
 
     cout << "PASS" << endl;
 
@@ -61,6 +99,10 @@ int main() {
     result = test_handles_empty_array();
 
     result = test_handle_unsorted_array_10();
+
+    result = test_handle_sorted_array_10();
+
+    result = test_handle_duplicate_values();
 
     return result;
 }

@@ -16,6 +16,7 @@ int* partition(int *p, int *r) {
             *j = *i;
             *i = tmp;
         }
+        /*
         cout << "(j: " << *j << ") ";
         cout << "(x: " << x << ") ";
         cout << "(i: " << i << ") ";
@@ -24,6 +25,7 @@ int* partition(int *p, int *r) {
         }
 
         cout << endl;
+        */
     }
     int tmp = *(i + 1);
     *(i + 1) = *r;
