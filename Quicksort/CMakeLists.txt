@@ -6,6 +6,6 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(Quicksort)
 
-include_directories()
+include_directories(./src)
 
-add_executable(Quicksort main.cpp)
+add_executable(Quicksort src/quicksort.cpp)
