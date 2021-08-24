@@ -1,11 +1,13 @@
 #include <iostream>
 
+#include "quicksort.hpp"
+
 using namespace std;
 
 int* partition(int *p, int *r) {
     int x = *r;
     int* i = p - 1;
-    for (int* j = p; j < r - 1; j++) {
+    for (int* j = p; j < r; j++) {
         if (*j < x) {
             i++;
 
@@ -14,10 +16,19 @@ int* partition(int *p, int *r) {
             *j = *i;
             *i = tmp;
         }
+        cout << "(j: " << *j << ") ";
+        cout << "(x: " << x << ") ";
+        cout << "(i: " << i << ") ";
+        for(int* w = p; w <= r; w++) {
+            cout << *w << ", ";
+        }
+
+        cout << endl;
     }
     int tmp = *(i + 1);
     *(i + 1) = *r;
     *r = tmp;
+
 
     return i + 1;
 }
@@ -28,18 +39,4 @@ void quicksort(int *p, int *r) {
         quicksort(p, q - 1);
         quicksort(q + 1, r);
     }
-}
-
-int main() {
-
-    int A[] = {3, 5, 1, 4, 9, 2, 7};
-
-    quicksort(A, A + 6);
-
-    for(int i = 0; i < 7; i++) {
-        cout << i << ", ";
-    }
-    cout << endl;
-
-    return 0;
 }

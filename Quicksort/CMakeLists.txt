@@ -8,4 +8,4 @@ project(Quicksort)
 
 include_directories(./src)
 
-add_executable(Quicksort src/quicksort.cpp)
+add_executable(tests src/tests.cpp src/quicksort.cpp)
