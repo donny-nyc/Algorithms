@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/src/CountingSort.cpp
+CountingSort.hpp
+/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/src/CountingSort.hpp
+
+/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/src/CountingSort.hpp
+
