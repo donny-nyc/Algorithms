@@ -8,4 +8,4 @@ project(CountingSort)
 
 include_directories(src)
 
-add_executable(CountingSort src/CountingSort.cpp src/test.cpp)
+add_executable(CountingSort src/CountingSort.tpp src/test.cpp)

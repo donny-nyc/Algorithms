@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/CountingSort.dir/src/CountingSort.cpp.o CMakeFiles/CountingSort.dir/src/test.cpp.o -o CountingSort 

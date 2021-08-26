@@ -1,5 +1,0 @@
-/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/build/CMakeFiles/rebuild_cache.dir
-/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/build/CMakeFiles/edit_cache.dir
-/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/build/CMakeFiles/CountingSort.dir
-/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/build/CMakeFiles/clang-tidy.dir
-/home/donny/Documents/Textbooks/IntroAlgorithms/CountingSort/build/CMakeFiles/clang-format.dir

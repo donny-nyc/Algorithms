@@ -43,3 +43,5 @@ imap <F2> <ESC>:w<CR>i
 " set makeprg=cmake
 map <F7> :make<CR>
 map <S-F7> :make clean all<CR>
+
+au BufNewFile,BufRead *.tpp set filetype=cpp

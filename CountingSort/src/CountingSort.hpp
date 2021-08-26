@@ -18,11 +18,4 @@ class CountingSort : public SortStrategy {
         void setRecords(T* r) { records = r; }
 };
 
-//template <typename T> void CountingSort<T>::sort() {
-template <typename T> void CountingSort<T>::sort() {
-    return;
-}
-
-template <typename T> CountingSort<T>::CountingSort() {
-    return;
-}
+#include "CountingSort.tpp"
