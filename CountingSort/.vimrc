@@ -41,7 +41,8 @@ imap <F2> <ESC>:w<CR>i
 
 " make
 " set makeprg=cmake
-map <F7> :make<CR>
-map <S-F7> :make clean all<CR>
+map <F7> :!cmake --build build<CR>
+map <F8> :!./build/CountingSort<CR>
+" map <S-F7> :make clean all<CR>
 
 au BufNewFile,BufRead *.tpp set filetype=cpp
