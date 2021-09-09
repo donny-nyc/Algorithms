@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.1)
 
 set(CMAKE_BUILD_TYPE Debug)
 
+add_compile_options(-O0)
+
 project(RadixSort)
 
-include_directories()
-
-add_executable(RadixSort test.cpp)
+add_executable(RadixSort src/main.cpp src/Radix.cpp src/NumberList.cpp)
