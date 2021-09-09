@@ -8,4 +8,4 @@ add_compile_options(-O0)
 
 project(RadixSort)
 
-add_executable(RadixSort src/main.cpp src/Radix.cpp src/NumberList.cpp)
+add_executable(RadixSort src/main.cpp)
