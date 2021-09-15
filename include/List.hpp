@@ -4,6 +4,8 @@
 // rather than just trying to hack my way through.
 //
 // https://stackoverflow.com/a/495056/15016489
+#include <stdexcept>
+
 #ifndef LIST_H
 #define LIST_H
 
@@ -27,6 +29,8 @@ namespace ds {
 			bool hasPrev() { return prev != nullptr; }
 			bool hasNext() { return next != nullptr; }
 			ListElement* getNext() { return next; };
+			void setNext(ListElement<T>*);
+			void setPrev(ListElement<T>*);
 			ListElement* getPrevious() { return prev; };
 	};
 
@@ -41,7 +45,9 @@ namespace ds {
 			~List();
 			void push(U);
 			U pop();
-			void insertAt(int i, U);
+			void insertAt(int, ListElement<U>*);
+			U  peekValue(int); // safely remove element at index, if exists
+			ListElement<U>* popElement(int); // safely remove element at index, if exists
 			bool empty();
 			bool full();
 			int getCount();
@@ -85,6 +91,76 @@ namespace ds {
 			delete current;
 			current = next;
 		}
+	}
+
+	template <typename T>
+	int List<T>::getCount() {
+		return count;
+	}
+
+	template <typename T>
+	void List<T>::insertAt(int idx, ListElement<T>* elem) {
+		if (idx < 0) throw std::range_error("idx cannot be negative");
+
+		if (idx >= count) throw std::range_error("idx outside of range");
+
+		ListElement<T>* current = head;
+		for(int i = 0; i < idx; i++) {
+			current = current->getNext();
+
+			if (!current) throw std::runtime_error("current is null");
+		}
+
+		if(current->hasPrev()) {
+			current->getPrevious()->setNext(elem);
+		}
+		elem->setNext(current);
+		current->setPrev(elem);	
+	}
+
+	template <typename T>
+  T List<T>::peekValue(int idx) {
+		if (idx < 0) throw std::range_error("idx cannot be negative");
+
+		if (idx >= count) throw std::range_error("idx outside of range");
+
+		ListElement<T>* current = head;
+		for(int i = 0; i < idx; i++) {
+			current = current->getNext();
+		}
+
+		return current->getValue();
+	}
+
+	template <typename T>
+	void ListElement<T>::setNext(ListElement<T>* elem) {
+		next = elem;
+	}
+
+	template <typename T>
+	void ListElement<T>::setPrev(ListElement<T>* elem) {
+		prev = elem;
+	}
+
+	template <typename T>
+  ListElement<T>* List<T>::popElement(int idx) {
+		if (idx < 0) throw std::range_error("idx cannot be negative");
+
+		if (idx >= count) throw std::range_error("idx outside of range");
+
+		ListElement<T>* current = head;
+		for(int i = 0; i < idx; i++) {
+			current = current->getNext();
+		}
+
+		if (current->hasNext() && current->hasPrev())
+			current->getPrevious()->setNext(current->getNext());
+		else if(current->hasPrev())
+			current->getPrevious()->setNext(nullptr);
+		else if(current->hasNext())
+			current->getNext()->setPrev(nullptr);
+
+		return current;
 	}
 
 	/*
