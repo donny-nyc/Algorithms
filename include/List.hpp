@@ -5,6 +5,9 @@
 //
 // https://stackoverflow.com/a/495056/15016489
 #include <stdexcept>
+#include <string>
+
+using namespace std;
 
 #ifndef LIST_H
 #define LIST_H
@@ -24,7 +27,7 @@ namespace ds {
 			~ListElement();
 			void insertAfter(T);
 			void insertBefore(T);
-			ListElement(T t): value(t) {};
+			ListElement(T t): value(t), next(nullptr), prev(nullptr) {};
 			T getValue() { return value; };
 			bool hasPrev() { return prev != nullptr; }
 			bool hasNext() { return next != nullptr; }
@@ -51,6 +54,7 @@ namespace ds {
 			bool empty();
 			bool full();
 			int getCount();
+			std::string String();
 			ListElement<U>* getHead() { return head; }
 	};
 
@@ -80,6 +84,17 @@ namespace ds {
 		count = list.count;
 	}
 
+	template <typename T>
+	std::string List<T>::String() {
+		std::string result = "";
+		for(int i = 0; i < count; i++) {
+			result += to_string(peekValue(i)) + ", ";
+		}
+		result += "\n";
+
+		return result;
+	}
+
 	template <typename Y>
 	List<Y>::~List() {
 		if (count <= 0) return;
@@ -102,11 +117,13 @@ namespace ds {
 	void List<T>::insertAt(int idx, ListElement<T>* elem) {
 		if (idx < 0) throw std::range_error("idx cannot be negative");
 
-		if (idx >= count) throw std::range_error("idx outside of range");
+		if (idx > count) throw std::range_error("idx outside of range");
 
 		ListElement<T>* current = head;
 		for(int i = 0; i < idx; i++) {
-			current = current->getNext();
+			if (current->hasNext()) {
+				current = current->getNext();
+			}
 
 			if (!current) throw std::runtime_error("current is null");
 		}
@@ -116,6 +133,8 @@ namespace ds {
 		}
 		elem->setNext(current);
 		current->setPrev(elem);	
+
+		count++;
 	}
 
 	template <typename T>
@@ -153,12 +172,15 @@ namespace ds {
 			current = current->getNext();
 		}
 
-		if (current->hasNext() && current->hasPrev())
+		if (current->hasNext() && current->hasPrev()) {
 			current->getPrevious()->setNext(current->getNext());
-		else if(current->hasPrev())
+			current->getNext()->setPrev(current->getPrevious());
+		} else if(current->hasPrev())
 			current->getPrevious()->setNext(nullptr);
 		else if(current->hasNext())
 			current->getNext()->setPrev(nullptr);
+
+		count--;
 
 		return current;
 	}

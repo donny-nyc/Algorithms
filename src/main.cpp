@@ -21,7 +21,7 @@ int main() {
 
 	List<int> result = is.sort(l);
 
-	cout << result.getHead()->getValue() << endl;
+	cout << result.String() << endl;
 
 	return 0;
 }
