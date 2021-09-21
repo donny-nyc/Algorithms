@@ -117,12 +117,22 @@ namespace ds {
 	void List<T>::insertAt(int idx, ListElement<T>* elem) {
 		if (idx < 0) throw std::range_error("idx cannot be negative");
 
-		if (idx > count) throw std::range_error("idx outside of range");
+		if (idx > count) throw std::range_error("idx outside of range: " + to_string(idx));
 
 		ListElement<T>* current = head;
-		for(int i = 0; i < idx; i++) {
+		for(int i = 0; i <= idx; i++) {
 			if (current->hasNext()) {
 				current = current->getNext();
+			} else {
+				current->setNext(elem);
+				elem->setPrev(current);
+				elem->setNext(nullptr);
+
+				tail = elem;
+
+				count++;
+				
+				return;
 			}
 
 			if (!current) throw std::runtime_error("current is null");
@@ -145,7 +155,9 @@ namespace ds {
 
 		ListElement<T>* current = head;
 		for(int i = 0; i < idx; i++) {
-			current = current->getNext();
+			if(current->hasNext()) {
+				current = current->getNext();
+			}
 		}
 
 		return current->getValue();
@@ -165,11 +177,13 @@ namespace ds {
   ListElement<T>* List<T>::popElement(int idx) {
 		if (idx < 0) throw std::range_error("idx cannot be negative");
 
-		if (idx >= count) throw std::range_error("idx outside of range");
+		if (idx > count) throw std::range_error("idx outside of range: " + to_string(idx));
 
 		ListElement<T>* current = head;
 		for(int i = 0; i < idx; i++) {
-			current = current->getNext();
+			if(current->hasNext()) {
+				current = current->getNext();
+			} 
 		}
 
 		if (current->hasNext() && current->hasPrev()) {
@@ -178,6 +192,7 @@ namespace ds {
 		} else if(current->hasPrev())
 			current->getPrevious()->setNext(nullptr);
 		else if(current->hasNext())
+			head = current->getNext();
 			current->getNext()->setPrev(nullptr);
 
 		count--;

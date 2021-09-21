@@ -13,7 +13,7 @@ int main() {
 
 	List<int> l = List<int>();
 
-	for(int i = 0; i < 10; i++) {
+	for(int i = 9; i >= 0; i--) {
 		l.push(i);
 	}
 

@@ -30,16 +30,18 @@ namespace sort {
 		List<V> ordered;
 
 		ListElement<V>* current = unordered.getHead();
-		for (int j = 1; j < unordered.getCount(); j++) {
+		for (int j = 0; j < unordered.getCount(); j++) {
+		// for (int j = 1; j < unordered.getCount(); j++) { why were we starting at 1?
 			// cout << unordered.String() << endl;
 			ListElement<V>* key = unordered.popElement(j);
-			int i = j - 1;
+			int i = j;
 			// while(i > 0 && in.at(i) > key) {  // related to above - we need to include lowest bound (0)
-			while(i >= 0 && unordered.peekValue(i) > key->getValue()) { 
+			while(i < unordered.getCount() && unordered.peekValue(i) < key->getValue()) { 
 				// unordered.insertAt(i + 1, unordered.popElement(i));
-				i--;
+				i++;
 			}
-			unordered.insertAt(i + 1, key);
+			// unordered.insertAt(i + 1, key);
+			unordered.insertAt(i, key);
 		}
 
 
