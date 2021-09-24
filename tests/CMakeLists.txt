@@ -1,2 +1,3 @@
-ADD_EXECUTABLE(test_sorting test_sorting.cpp)
-ADD_TEST(sorting test_sorting)
+enable_testing()
+add_executable(test_sorting test_sorting.cpp)
+add_test(sorting test_sorting)
