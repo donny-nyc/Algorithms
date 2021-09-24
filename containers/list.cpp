@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 template <typename T>
-class List {
+class List : public Container<T> {
 	private:
 		int count;
 		int max;
@@ -17,7 +17,7 @@ class List {
 		T pop_front();
 		void insert(int, T);
 		T remove_from(int);
-		T get(int);
+		T* get(int);
 		T find(T);
 		void sort();
 	public:
@@ -133,7 +133,7 @@ T List<T>::remove_from(int idx) {
 }
 
 template <typename T>
-T List<T>::get(int idx) {
+T* List<T>::get(int idx) {
 	// don't accept idx that fall outside our bounds
 	if (idx < 0 || idx > count) {
 		throw std::range_error("out of range");
@@ -141,5 +141,20 @@ T List<T>::get(int idx) {
 
 	// otherwise, simply return the value at the
 	// requested index
-	return values[idx];
+	return values + idx;
+}
+
+template <typename T>
+T List<T>::find(T target) {
+	throw std::runtime_error("unimplemented" + target);
+}
+
+template <typename T>
+void List<T>::sort() {
+	throw std::runtime_error("unimplemented");
+}
+
+template <typename T>
+int List<T>::length() {
+	return count;
 }

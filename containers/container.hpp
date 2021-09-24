@@ -8,6 +8,8 @@
 #include "../strategies/sort_strategy.hpp"
 #include "../strategies/search_strategy.hpp"
 
+#include <stdexcept>
+
 template <typename T>
 class ContainerElement {
 	public:
@@ -29,16 +31,31 @@ class Container {
 		SearchStrategy<T> searchStr;
 		SortStrategy<T> sortStr;
 	public:
-		virtual void push_end(T);
-		virtual T pop_end();
-		virtual void push_front(T);
-		virtual T pop_front();
-		virtual void insert(int, T);
-		virtual T* get(int); // return the element at the given index
 		virtual T find(T);
 		virtual void sort();
+		virtual T* get(int);
 	public:
 		virtual int length();
 };
+
+template <typename T>
+T Container<T>::find(T target) {
+	throw std::runtime_error("unimplemented: " + target);	
+}
+
+template <typename T>
+void Container<T>::sort() {
+	throw std::runtime_error("unimplemented: ");
+}
+
+template <typename T>
+int Container<T>::length() {
+	throw std::runtime_error("unimplemented");
+}
+
+template <typename T>
+T* Container<T>::get(int idx) {
+	throw std::runtime_error("unimplemented");
+}
 
 #endif
