@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.1)
 
 project(Sorting)
 
+enable_testing()
+
 set(CMAKE_BUILD_TYPE Debug)
 
 add_compile_options(-O0)
