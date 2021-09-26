@@ -9,7 +9,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 add_compile_options(-O0)
 
-set(SOURCES main.cpp containers/list.cpp containers/container.hpp
+set(SOURCES main.cpp containers/vector.cpp containers/container.hpp
 	strategies/sort_strategy.hpp strategies/insert_sort.cpp)
 
 add_subdirectory( tests )

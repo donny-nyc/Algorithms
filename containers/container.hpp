@@ -41,7 +41,7 @@ class Container {
 
 template <typename T>
 T Container<T>::find(T target) {
-	throw std::runtime_error("unimplemented: " + target);	
+	throw std::runtime_error("unimplemented");	
 }
 
 template <typename T>

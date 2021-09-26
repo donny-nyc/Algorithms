@@ -15,7 +15,7 @@ Container<C>* InsertSort<C>::sort(Container<C>* container) {
 
 	for(int j = 1; j < container->length(); j++) {
 
-		int key = container->get(j);
+		C key = container->get(j);
 
 		int i = j - 1;
 		while(i >= 0 && container->get(i) > key) {

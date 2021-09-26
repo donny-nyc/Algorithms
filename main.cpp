@@ -1,11 +1,11 @@
-#include "containers/list.cpp"
+#include "containers/vector.cpp"
 
-template class List<int>;
+template class Vector<int>;
 
 int main() {
-	List<int> list = List<int>();
+	Vector<int> vector = Vector<int>();
 
-	list.push_front(5);
+	vector.push_front(5);
 
 	return 0;
 }
