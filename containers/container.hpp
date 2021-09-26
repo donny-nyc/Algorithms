@@ -33,7 +33,8 @@ class Container {
 	public:
 		virtual T find(T);
 		virtual void sort();
-		virtual T* get(int);
+		virtual T get(int);
+		virtual void set(int, T);
 	public:
 		virtual int length();
 };
@@ -54,7 +55,12 @@ int Container<T>::length() {
 }
 
 template <typename T>
-T* Container<T>::get(int idx) {
+T Container<T>::get(int) {
+	throw std::runtime_error("unimplemented");
+}
+
+template <typename T>
+void Container<T>::set(int, T) {
 	throw std::runtime_error("unimplemented");
 }
 

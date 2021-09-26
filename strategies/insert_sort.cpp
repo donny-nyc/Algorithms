@@ -13,15 +13,17 @@ Container<C>* InsertSort<C>::sort(Container<C>* container) {
 		return container;
 	}
 
-	for(int j = 2; j < container->length(); j++) {
+	for(int j = 1; j < container->length(); j++) {
 
-		ContainerElement<C>* key = container->get(j);
+		int key = container->get(j);
 
 		int i = j - 1;
-		while(i > 0 && container->get(i)->value > key->value) {
-			container->get(i + 1)->value = container->get(i)->value;
+		while(i >= 0 && container->get(i) > key) {
+			container->set(i + 1, container->get(i));
 			i = i - 1;
 		}
-		container->get(i + 1) = key->value;
+		container->set(i + 1, key);
 	}
+
+	return container;
 }

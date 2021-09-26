@@ -9,6 +9,7 @@ class List : public Container<T> {
 		T* values;
 	public:
 		List();
+		List(int);
 		~List();
 		List(const List& other);
 		void push_end(T);
@@ -17,7 +18,8 @@ class List : public Container<T> {
 		T pop_front();
 		void insert(int, T);
 		T remove_from(int);
-		T* get(int);
+		T get(int);
+		void set(int, T);
 		T find(T);
 		void sort();
 	public:
@@ -28,6 +30,16 @@ template <typename T>
 List<T>::List() {
 	values = new T[10];
 	max = 10;
+	count = 0;
+}
+
+template <typename T>
+List<T>::List(int size) {
+	if(size <= 0) {
+		throw std::invalid_argument("size must be greater than zero");
+	}
+	values = new T[size];
+	max = size;
 	count = 0;
 }
 
@@ -133,15 +145,24 @@ T List<T>::remove_from(int idx) {
 }
 
 template <typename T>
-T* List<T>::get(int idx) {
+T List<T>::get(int idx) {
 	// don't accept idx that fall outside our bounds
-	if (idx < 0 || idx > count) {
+	if (idx < 0 || idx >= count) {
 		throw std::range_error("out of range");
 	}
 
 	// otherwise, simply return the value at the
 	// requested index
-	return values + idx;
+	return values[idx];
+}
+
+template <typename T>
+void List<T>::set(int idx, T value) {
+	if (idx < 0 || idx > count) {
+		throw std::range_error("out of range");
+	}
+
+	values[idx] = value;
 }
 
 template <typename T>
