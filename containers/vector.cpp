@@ -12,12 +12,17 @@ class Vector : public Container<T> {
 		Vector(int);
 		~Vector();
 		Vector(const Vector& other);
+	public:
 		void push_end(T);
 		T pop_end();
 		void push_front(T);
 		T pop_front();
 		void insert(int, T);
 		T remove_from(int);
+	public:
+		T front();
+		T back();
+	public:
 		T get(int);
 		void set(int, T);
 		T find(T);
@@ -55,6 +60,16 @@ void Vector<T>::push_end(T elem) {
 
 template <typename T>
 void Vector<T>::push_front(T elem) {
+	/* insert should already take care of this
+	// shift any existing elements forward
+	// to make room
+	if(count > 0) {
+		for(int i = count; i > 0; i--) {
+			insert(i, get(i - 1));	
+		}
+	}
+
+	*/
 	insert(0, elem);
 }
 
@@ -103,12 +118,14 @@ void Vector<T>::insert(int idx, T elem) {
 	// otherwise, shift all existing elements down
 	// to make space for the new value
 	int j = count - 1;
-	while(j > 0 && j > idx) {
+	while(j >= 0 && j >= idx) {
 		values[j + 1] = values[j];
 		j--;
 	}
 
 	values[j + 1] = elem;
+
+	count++;
 }
 
 template <typename T>
@@ -166,7 +183,7 @@ void Vector<T>::set(int idx, T value) {
 }
 
 template <typename T>
-T Vector<T>::find(T target) {
+T Vector<T>::find(T) {
 	throw std::runtime_error("unimplemented");
 }
 
@@ -178,4 +195,34 @@ void Vector<T>::sort() {
 template <typename T>
 int Vector<T>::length() {
 	return count;
+}
+
+/*
+ * front() returns the first element in the collection
+ * if it exists
+ *
+ * throws std::range_error if no element is available
+ */
+template <typename T>
+T Vector<T>::front() {
+	if(count == 0) {
+		throw std::range_error("vector is empty");
+	}
+
+	return values[0];
+}
+
+/*
+ * back() returns the last element in the collection
+ * if it exists
+ *
+ * throws std::range_error if the collection is empty
+ */
+template <typename T>
+T Vector<T>::back() {
+	if (count == 0) {
+		throw std::range_error("collection is empty");
+	}
+
+	return values[count - 1];
 }
