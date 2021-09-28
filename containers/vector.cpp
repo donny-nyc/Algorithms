@@ -1,12 +1,13 @@
 #include "container.hpp"
 #include <stdexcept>
+#include <memory>
 
 template <typename T>
 class Vector : public Container<T> {
 	private:
 		int count;
 		int max;
-		T* values;
+		std::unique_ptr<T> values;
 	public:
 		Vector();
 		Vector(int);
@@ -14,27 +15,29 @@ class Vector : public Container<T> {
 		Vector(const Vector& other);
 	public:
 		void push_end(T);
-		T pop_end();
+		auto pop_end() -> T;
 		void push_front(T);
-		T pop_front();
+		auto pop_front() -> T;
 		void insert(int, T);
-		T remove_from(int);
+		auto remove_from(int) -> T;
 	public:
-		T front();
-		T back();
+		auto front() -> T;
+		auto back() -> T;
 	public:
-		T get(int);
+		auto get(int) -> T;
 		void set(int, T);
-		T find(T);
+		auto find(T) -> T;
 		void sort();
 	public:
-		int length();
+		auto length() -> int;
 };
+
+constexpr int VECTOR_DEFAULT_SIZE = 10;
 
 template <typename T>
 Vector<T>::Vector() {
-	values = new T[10];
-	max = 10;
+	values = std::unique_ptr<T>(new T[VECTOR_DEFAULT_SIZE]);
+	max = VECTOR_DEFAULT_SIZE;
 	count = 0;
 }
 
@@ -43,7 +46,7 @@ Vector<T>::Vector(int size) {
 	if(size <= 0) {
 		throw std::invalid_argument("size must be greater than zero");
 	}
-	values = new T[size];
+	values = std::unique_ptr<T>(new T[size]);
 	max = size;
 	count = 0;
 }
@@ -74,12 +77,12 @@ void Vector<T>::push_front(T elem) {
 }
 
 template <typename T>
-T Vector<T>::pop_end() {
+auto Vector<T>::pop_end() -> T {
 	return remove_from(count);
 }
 
 template <typename T>
-T Vector<T>::pop_front() {
+auto Vector<T>::pop_front() -> T {
 	return remove_from(0);
 }
 
@@ -95,7 +98,7 @@ void Vector<T>::insert(int idx, T elem) {
 	// allocate a new data store. Just
 	// double the array length.
 	if (count == max) {
-		T* new_values = new T[max * 2];				
+		std::unique_ptr<T> new_values = std::unique_ptr<T>(new T[max * 2]);	
 
 		// copy existing values into  new data store
 		for(int i = 0; i < count; i++) {
@@ -129,7 +132,7 @@ void Vector<T>::insert(int idx, T elem) {
 }
 
 template <typename T>
-T Vector<T>::remove_from(int idx) {
+auto Vector<T>::remove_from(int idx) -> T {
 	// we should err if idx is out of bounds
 	if (idx < 0 || idx > count) {
 		throw std::range_error("out of range");
@@ -162,7 +165,7 @@ T Vector<T>::remove_from(int idx) {
 }
 
 template <typename T>
-T Vector<T>::get(int idx) {
+auto Vector<T>::get(int idx) -> T {
 	// don't accept idx that fall outside our bounds
 	if (idx < 0 || idx >= count) {
 		throw std::range_error("out of range");
@@ -183,7 +186,7 @@ void Vector<T>::set(int idx, T value) {
 }
 
 template <typename T>
-T Vector<T>::find(T) {
+auto Vector<T>::find(T) -> T {
 	throw std::runtime_error("unimplemented");
 }
 
@@ -193,7 +196,7 @@ void Vector<T>::sort() {
 }
 
 template <typename T>
-int Vector<T>::length() {
+auto Vector<T>::length() -> int {
 	return count;
 }
 
@@ -204,7 +207,7 @@ int Vector<T>::length() {
  * throws std::range_error if no element is available
  */
 template <typename T>
-T Vector<T>::front() {
+auto Vector<T>::front() -> T {
 	if(count == 0) {
 		throw std::range_error("vector is empty");
 	}
@@ -219,7 +222,7 @@ T Vector<T>::front() {
  * throws std::range_error if the collection is empty
  */
 template <typename T>
-T Vector<T>::back() {
+auto Vector<T>::back() -> T {
 	if (count == 0) {
 		throw std::range_error("collection is empty");
 	}
