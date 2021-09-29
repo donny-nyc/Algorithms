@@ -12,6 +12,9 @@ class Vector : public Container<T> {
 		Vector();
 		Vector(int);
 		~Vector();
+		Vector(Vector<T>&&);
+		auto operator=(Vector) -> Vector<T>&;
+		auto operator=(Vector&&) -> Vector<T>&;
 		Vector(const Vector& other);
 	public:
 		void push_end(T);
@@ -35,6 +38,33 @@ class Vector : public Container<T> {
 constexpr int VECTOR_DEFAULT_SIZE = 10;
 
 template <typename T>
+Vector<T>::Vector(Vector<T>&& other) {
+	count = other.count;
+	max = other.max;
+	values = other.values;
+
+	other.values = nullptr;
+}
+
+template <typename T>
+auto Vector<T>::operator=(Vector<T>&& other) -> Vector<T>& {
+	// check for self-assignment
+	if(&other == this) {
+		return *this;
+	}
+
+	// delete resources held by this
+	delete values;
+
+	// transfer ownership from other to this
+	count = other.count;
+	max = other.max;
+	values = other.values;
+
+	return *this;
+}
+
+template <typename T>
 Vector<T>::Vector() {
 	values = std::unique_ptr<T>(new T[VECTOR_DEFAULT_SIZE]);
 	max = VECTOR_DEFAULT_SIZE;
@@ -49,6 +79,13 @@ Vector<T>::Vector(int size) {
 	values = std::unique_ptr<T>(new T[size]);
 	max = size;
 	count = 0;
+}
+
+template <typename T>
+auto Vector<T>::operator=(Vector<T> other) -> Vector<T>& {
+	count = other.count;
+	max = other.max;
+	values = other.values;
 }
 
 template <typename T>
