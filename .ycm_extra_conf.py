@@ -6,7 +6,7 @@ def Settings(**kwargs):
           '-Wall',
           '-Wextra',
           '-Werror',
-          '-Icontainers',
-          '-Istrategies'
+          '-I./include',
+          '-I./src',
           ],
     }

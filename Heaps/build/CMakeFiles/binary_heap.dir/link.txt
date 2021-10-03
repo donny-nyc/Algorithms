@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/binary_heap.dir/binary_heap.cpp.o CMakeFiles/binary_heap.dir/testing.cpp.o CMakeFiles/binary_heap.dir/heap.cpp.o -o binary_heap 
