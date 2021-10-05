@@ -5,3 +5,5 @@
 build/
 **/tags
 **/*.pdf
+.cache
+.clangd
