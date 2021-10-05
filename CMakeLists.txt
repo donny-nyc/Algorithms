@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.1)
 
 project(Sorting)
 
+enable_testing()
 # enable_testing()
 
 set(CMAKE_BUILD_TYPE Debug)
@@ -16,5 +17,8 @@ add_subdirectory( src )
 
 # add_subdirectory( tests )
 
-target_include_directories(Sorting BEFORE PUBLIC ./include)
+# so include_directories(...) should apply to all targets in this
+# CMakeList
 
+# include_directories("./include")
+# seems like an older method, requires additional work
