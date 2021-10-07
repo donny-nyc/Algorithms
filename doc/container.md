@@ -1,5 +1,21 @@
 ### Container, an overview
 
+## Container Interface
+```
+template <typename T>
+class Container {
+	public:
+		Container();
+		Container(T*, int count);
+		Container(const Container&&);
+		virtual ~Container();
+	public:
+		auto find(T) -> T;
+		void sort();
+		auto get(int) -> T;
+};
+```
+
 Let's start by considering the following example:
 ```
 // container.cpp

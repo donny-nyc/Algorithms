@@ -3,5 +3,10 @@
 add_executable (base_test base_test.cpp)
 target_include_directories(base_test BEFORE PUBLIC "../../include")
 
+add_executable (array_list_test ArrayList_test.cpp)
+target_include_directories(array_list_test BEFORE PUBLIC "../../include")
+target_include_directories(array_list_test BEFORE PUBLIC "../containers")
+
 add_test (BaseTest base_test)
+add_test (ArrayListTest array_list_test)
 

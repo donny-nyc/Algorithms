@@ -1,4 +1,5 @@
-set(SOURCES containers/container.cpp containers/List.cpp sort/sort.cpp main.cpp)
+# set(SOURCES containers/container.cpp containers/ArrayList.cpp sort/sort.cpp main.cpp)
+set(SOURCES containers/container.cpp sort/sort.cpp main.cpp)
 
 add_executable(Sorting ${SOURCES})
 target_include_directories(Sorting BEFORE PUBLIC "../include")
