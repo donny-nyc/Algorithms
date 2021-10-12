@@ -23,9 +23,7 @@ class Container {
 };
 
 template <typename T>
-Container<T>::Container() {
-	throw std::runtime_error("Container() not implemented");
-}
+Container<T>::Container() = default;
 
 template <typename T>
 Container<T>::Container(T*, int) {
